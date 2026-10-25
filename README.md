@@ -35,6 +35,9 @@
 | BIOS power profile | Performance; Maximum Performance CPU power policy, Intel Turbo enabled, C-states disabled, uncore maximum |
 | Linux CPU governor | `performance` on all 96 logical CPUs during testing; `intel_pstate` passive |
 
+![Server Hardware1](assets/R740_1.JPG)
+![Server Hardware2](assets/R740_2.JPG)
+
 **Model size and full layer placement:** The GGUF byte size and full startup tensor-allocation log were not captured in the record; do not infer them from the model name or VRAM readings.
 
 ## Methodology and important limitations
