@@ -1,0 +1,25 @@
+build,cpu,threads,numa_or_affinity,ncmoe,prompt_tokens_per_s,generation_tokens_per_s,notes
+original,old CPUs baseline,32,interleaved,34,157.23,16.32,
+original,new 6252,48,interleaved,34,156.86,6.66,
+original,new 6252,32,interleaved,34,158.27,10.19,
+original,new 6252,24,interleaved,34,160.01,13.64,
+original,new 6252,16,interleaved,34,156.7,16.47,
+original,new 6252,12,interleaved,34,153.52,15.09,
+original,new 6252,16,CPU0+MEM0,34,167.94,20.56,
+original,new 6252,16,CPU1+MEM1,34,159.38,19.63,
+original,new 6252,16,CPU0+interleaved,34,169.04,15.08,
+original,new 6252,16,any CPU+MEM0,34,155.39,13.19,
+original,new 6252,20,CPU0+MEM0,34,170.31,14.56,
+original,new 6252,14,CPU0+MEM0,34,166.49,17.53,
+original,new 6252,16,16 physical CPUs+MEM0,34,167.7,17.63,
+original,new 6252,16,24 physical CPUs+MEM0,34,168.92,20.33,
+original,new 6252,18,CPU0+MEM0,34,169.69,16.83,
+original,new 6252,16,CPU0+MEM0,34,168.04,19.24,rerun
+new-native,new 6252,16,CPU0+MEM0,34,167.08,19.74,initial
+new-native,new 6252,16,CPU0+MEM0,34,167.15,20.46,repeat
+new-native,new 6252,12,CPU0+MEM0,34,164.73,16.49,
+new-native,new 6252,20,CPU0+MEM0,34,170.81,17.2,
+new-native,new 6252,17,CPU0+MEM0,34,167.66,17.05,
+new-native,new 6252,15,CPU0+MEM0,34,167.68,19.83,
+new-native,new 6252,16,CPU0+MEM0,33,171.89,17.67,
+new-native,new 6252,16,CPU0+MEM0,35,164.93,16.96,
