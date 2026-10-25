@@ -22,7 +22,7 @@
 | --- | --- |
 | Server | Dell PowerEdge R740 |
 | Upgraded CPUs | **2 × Intel Xeon Gold 6252**, 24 cores / 48 threads each; **48 cores / 96 logical CPUs total** |
-| Previous R740 CPUs | Two 16-core Xeons (exact model not documented in this session); **32 cores / 64 logical CPUs total** |
+| Previous R740 CPUs | **2 x Intel Xeon Gold 6134** 8 cores / 16 threads per CPU;  **16 cores/32 logical CPUs total** Base Freq 3.20GHz, Max Turbo Freq: 3.70 GHz| 
 | System RAM | **384 GB installed ECC RAM**; Linux NUMA report: 191,944 MB on node 0 and 193,481 MB on node 1 (available node memory is not the same unit as installed capacity) |
 | RAM channels / speed | DIMM slot/channel population and negotiated memory data rate **not yet verified** |
 | NUMA | 2 nodes; Linux distances local 10 / remote 21 |
