@@ -195,7 +195,7 @@ Copy `scripts/llamabench2.py` to the llama.cpp working directory, or run it from
 
 ## What remains unanswered
 
-- Memory DIMM placement, DRAM speed, and physical memory bandwidth under this R740 configuration.
+- Memory DIMM placement, and physical memory bandwidth under this R740 configuration.
 - A standardized official `llama-bench` rerun with verified exact token counts, all repeats, stable cache behavior and fuller run metadata.
 - Why 16 threads was unusually fast relative to 17–20 threads.
 - Exact allocation details from model-load logs and compute/memory transfer profiling.
