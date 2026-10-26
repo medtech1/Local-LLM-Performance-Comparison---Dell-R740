@@ -12,6 +12,7 @@
 - Memory and execution placement mattered enormously: original-build 16-thread generation measured **20.56 t/s locally on NUMA node 0**, **19.63 on node 1**, **15.08 with node-0 CPU plus interleaved memory**, and **13.19 with unrestricted CPUs plus node-0 memory**.
 - **More threads were not better:** on the original build, 16 threads generated **16.47 t/s** with interleaved memory vs. **6.66 t/s** at 48 threads. On the new native build, 16 NUMA-local threads generated **20.46 t/s** versus **17.05 at 17 threads**.
 - MoE offloading had a sharp optimum within the tested range. On the new build, `-ncmoe 33`, `34`, `35` produced **17.67**, **20.46**, **16.96 t/s** respectively; VRAM use was **7,517**, **5,901**, **4,315 MiB** respectively.
+- A separate **real-world conversational test** produced a long answer to a medical research question. The interface reported **904 reasoning tokens / 12 s / 71.22 t/s** and **925 answer tokens / 56 s / 16.28 t/s**. These are *interface-reported* phases, not independently verified server-side token rates.
 - These are empirical observations for **one server, one model, one GPU and one benchmark script**—not universal recommendations or head-to-head CPU-only benchmarks.
 
 ![NUMA comparison](assets/numa-placement.png)
@@ -177,7 +178,29 @@ The BIOS System Profile was Performance; Intel Turbo Boost was enabled and the L
 - These measurements provide **no indication of thermal throttling in the sampled windows**; they are not proof that power/AVX/frequency limits were never active during the whole workload. Neither RAPL package power nor combined CPU package power equals total server wall consumption.
 - Raising power limits or overriding CPU frequency limits was **not tested**.
 
-## 7. Reproducing a run
+## 7. Real-world conversational test (direct llama-server interface)
+
+Beyond the synthetic short-prompt benchmark, we opened the model through the locally hosted `llama-server` interface (without Open WebUI) and asked:
+
+> What are the barriers in developing a cure for liver cancer?
+
+The model returned a lengthy, structured answer addressing tumor heterogeneity, molecular targets, the tumor microenvironment, underlying liver disease, late detection, and treatment limitations. This was an informal usability test, **not** a medical accuracy evaluation or a standardized throughput run.
+
+| Interface-reported metric | Observed result |
+| --- | ---: |
+| Reasoning phase | 904 tokens |
+| Reasoning elapsed time | 12 seconds |
+| Reasoning speed displayed | 71.22 tokens/s |
+| Answer phase | 925 tokens |
+| Answer elapsed time | 56 seconds |
+| Answer generation speed displayed | **16.28 tokens/s** |
+| Prior synthetic `tg128` best, new build | 20.46 tokens/s |
+
+**Interpretation and limitations:** The user interface displayed separate reasoning and answer timings, but we did not collect the corresponding server-side per-phase timing records or confirm whether the interface's token counting and timing conventions match `timings.predicted_per_second` in our custom benchmark. The displayed token/time pairs also do not divide to exactly the listed speeds, possibly because of rounding or differing timing boundaries. **Do not interpret 71.22 tokens/s as proven raw model reasoning-token generation throughput**, nor treat the difference from 16.28 tokens/s as evidence of a faster reasoning kernel. The 925-token answer runs longer than the benchmark's requested maximum of 128 generated tokens; context length, caching, sampling and interface accounting may differ. The exact active binary and runtime parameters for this conversational run were not captured separately.
+
+The generated answer was substantive, but its Markdown tables were malformed and some quantitative medical claims were unsourced or required verification. Selected early-stage liver cancers can already be treated curatively; the question of broadly curing advanced disease remains distinct. This example demonstrates interactive usability only—not clinical reliability. **Do not rely on the model's medical statements without independent source verification.**
+
+## 8. Reproducing a run
 
 After confirming the official code/source revision, the model file, local security posture and available VRAM:
 
