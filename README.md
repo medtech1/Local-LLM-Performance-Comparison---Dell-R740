@@ -26,7 +26,7 @@
 | System RAM | **384 GB 2400MHz installed ECC RAM**; Linux NUMA report: 191,944 MB on node 0 and 193,481 MB on node 1 (available node memory is not the same unit as installed capacity) |
 | RAM channels / speed | DIMM slot/channel population and negotiated memory data rate **not yet verified** |
 | NUMA | 2 nodes; Linux distances local 10 / remote 21 |
-| GPU | NVIDIA GeForce RTX 2080 SUPER, **8 GiB VRAM**, PCI `0000:3B:00.0`, attached to NUMA node 0 |
+| GPU | NVIDIA GeForce RTX 2080 SUPER, **8 GiB VRAM**, PCI `0000:3B:00.0`, attached to NUMA node 0  - Note: Riser 2A was removed to allow this GPU to fit in Riser1A|
 | OS | Debian Linux (release not independently captured for this R740 session) |
 | NVIDIA driver | 615.71.10 as reported by `nvidia-smi` |
 | CUDA compiler | CUDA Toolkit **13.4.92** |
